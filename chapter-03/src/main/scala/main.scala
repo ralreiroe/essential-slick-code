@@ -25,7 +25,7 @@ object Example extends App {
 
   // Helper method for running a query in this example file:
   def exec[T](program: DBIO[T]): T =
-    Await.result(db.run(program), 5000 milliseconds)
+    Await.result(db.run(program), 5000 milliseconds)  //https://stackoverflow.com/questions/36455080/basic-slick-insert-example/36457814
 
 
   def testData = Seq(
@@ -59,6 +59,8 @@ object Example extends App {
     // Insert one, returning the ID:
     val id = exec((messages returning messages.map(_.id)) += Message("HAL", "I'm back"))
     println(s"The ID inserted was: $id")
+
+    //also see https://scala-slick.org/doc/3.0.0/queries.html#inserting - to get back auto increment value
 
     // -- DELETES --
 
